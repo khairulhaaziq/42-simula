@@ -66,7 +66,7 @@ int run_tests(t_test *tests, int count)
 
     for (i = 0; i < count; i++)
     {
-        char dest[strlen(tests[i].dest) + 1];
+        char *dest = malloc(strlen(tests[i].dest) + 1);
         strcpy(dest, tests[i].dest);
 
         ft_strlcat(dest, tests[i].src, tests[i].size);
@@ -80,6 +80,7 @@ int run_tests(t_test *tests, int count)
         {
             printf("  " GREEN CHECKMARK GREY " [%d] %s Expected \"%s\" output \"%s\"\n" DEFAULT, i + 1, tests[i].desc, tests[i].expected_output, dest);
         }
+        free(dest);
     }
 
     return error;
